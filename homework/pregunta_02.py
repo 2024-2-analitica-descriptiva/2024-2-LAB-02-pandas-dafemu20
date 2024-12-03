@@ -4,7 +4,10 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 `tbl2.tsv`. En este laboratorio solo puede utilizar las funciones y 
 librerias de pandas para resolver las preguntas.
 """
+import glob
+import os
 
+import pandas as pd  # type: ignore
 
 def pregunta_02():
     """
@@ -14,3 +17,10 @@ def pregunta_02():
     4
 
     """
+    df = pd.read_csv('files/input/tbl0.tsv', sep='\t')
+
+    filas = df.shape[1]
+
+    return filas
+
+pregunta_02()

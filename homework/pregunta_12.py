@@ -4,7 +4,7 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 `tbl2.tsv`. En este laboratorio solo puede utilizar las funciones y 
 librerias de pandas para resolver las preguntas.
 """
-
+import pandas as pd
 
 def pregunta_12():
     """
@@ -22,3 +22,19 @@ def pregunta_12():
     38   38                    eee:0,fff:9,iii:2
     39   39                    ggg:3,hhh:8,jjj:5
     """
+    data = pd.read_csv("files/input/tbl2.tsv", sep="\t")
+
+    tabla_c0_c5 = data.groupby('c0').apply(
+      lambda group: ','.join(f"{a}:{b}" for a, b in zip(group['c5a'], group['c5b']))
+    ).reset_index(name='c5')
+
+    # Ordenar los valores dentro de cada grupo de 'c5' alfabéticamente
+    tabla_c0_c5['c5'] = tabla_c0_c5['c5'].apply(
+     lambda x: ','.join(sorted(x.split(',')))
+    )
+
+    print(tabla_c0_c5)
+
+    return tabla_c0_c5
+
+pregunta_12()

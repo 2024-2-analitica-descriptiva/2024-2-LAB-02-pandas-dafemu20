@@ -4,7 +4,7 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 `tbl2.tsv`. En este laboratorio solo puede utilizar las funciones y 
 librerias de pandas para resolver las preguntas.
 """
-
+import pandas as pd  # type: ignore
 
 def pregunta_03():
     """
@@ -21,3 +21,13 @@ def pregunta_03():
     Name: count, dtype: int64
 
     """
+    data = pd.read_csv("files/input/tbl0.tsv", sep='\t')
+
+    # Contar la cantidad de registros por cada letra en la columna 'c1'
+    conteo_c1 = data['c1'].value_counts().sort_index()
+
+    print(conteo_c1)
+
+    return conteo_c1
+
+pregunta_03()
